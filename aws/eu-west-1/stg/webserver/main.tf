@@ -15,7 +15,7 @@ module "vars-global" {
 
 module "nginx" {
   env = "stg"
-  bucket_name = "my_bucket"
+  bucket_name = "buget-stg"
   source             = "../../../../modules/webserver"
 }
 
