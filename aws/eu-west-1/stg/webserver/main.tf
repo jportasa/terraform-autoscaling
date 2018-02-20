@@ -5,19 +5,21 @@ provider "aws" {
 }
 
 module "vars-stg" {
-  source = "../../../../modules/vars/eu-west-1/stg"
+  source = "../../../modules/vars/eu-west-1/stg"
 }
 
 module "vars-global" {
-  source = "../../../../modules/vars/eu-west-1/global"
+  source = "../../../modules/vars/eu-west-1/global"
 }
-
 
 module "nginx" {
   env = "stg"
-  bucket_name = "buget-stg"
-  source             = "../../../../modules/webserver"
-}
+  role = "webserver"
 
+  # Loaded variables from prod module
+  vpc_id               = "${module.vars-stg.vpc_id}"
+
+  source             = "../../../modules/webserver"
+}
 
 
