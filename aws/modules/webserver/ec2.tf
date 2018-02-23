@@ -26,13 +26,14 @@ data "template_file" "user_data" {
 
 
 resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami           = "ami-1b791862"
   instance_type = "t1.micro"
   security_groups = ["${aws_security_group.webserver_sg.id}"]
   subnet_id         = "${var.public_subnets_id.["eu-west-1a"]}"
   key_name          = "${var.ssh_key_name}"
   associate_public_ip_address = true
   user_data                   = "${data.template_file.user_data.rendered}"
+  iam_instance_profile = "EC2CodeDeployExample"
 
   tags {
     Name = "webserver"

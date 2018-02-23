@@ -17,6 +17,13 @@ resource "aws_security_group" "webserver_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks = ["${var.public_subnets_cidr.["eu-west-1a"]}"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -28,9 +35,5 @@ resource "aws_security_group" "webserver_sg" {
     Name        = "${var.env}-${var.role}-sg"
     Team        = "devops"
     Terraform   = "true"
-  }
-
-  lifecycle {
-    create_before_destroy = true
   }
 }

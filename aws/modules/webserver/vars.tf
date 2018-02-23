@@ -21,3 +21,8 @@ variable "public_subnets_id" {
   description = "Private subnets ID in the VPC"
   type        = "map"
 }
+
+variable "public_subnets_cidr" {
+  description = "Private subnets CIDR in the VPC"
+  type        = "map"
+}

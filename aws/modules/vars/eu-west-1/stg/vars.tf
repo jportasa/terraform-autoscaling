@@ -10,7 +10,7 @@ variable "public_subnets_cidr" {
   type = "map"
 
   default = {
-    "eu-west-1a" = "10.100.1.0/24"
+    "eu-west-1a" = "10.0.101.0/24"
   }
 }
 ############################################
